@@ -84,6 +84,7 @@ This setup is made for:
 With that setup I get 45ms per token.
 
 ## Roadplan
+- [ ] checks in script to inform user about empty /models/
 - [ ] Add menu to choose CPU only or CPU+GPU
 - [ ] Steam Deck settings
 - [ ] Windows versions (CPU only)

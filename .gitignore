@@ -1,2 +1,4 @@
 models/*
+!models/put_models_here.txt
 cache/*
+!cache/cache_folder.txt
