@@ -1,8 +1,13 @@
 !/bin/bash
+# PromptEngineer - chat bot for creating prompts for Stable Diffusion
+# Based on the work of u/Ryu116 (https://reddit.com/user/Ryu116/)
+# Version 1.0
+# (c) 2023 Krzysztof Krystian Jankowski
+
 MODEL="Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin"
 
 CORES=2
-GPUL=14
+GPU_L=14
 
 TEMP=0.7
 TOP_K=40
@@ -10,7 +15,7 @@ TOP_P=0.1
 RPEN=1.1764705882352942
 
 user_name="${USER_NAME:-User}"
-assistant_name="${AI_NAME:-Prompt Creator}"
+assistant_name="${AI_NAME:-PromptEngineer}"
 echo "Welcome to the Prompt Creator!"
 echo "---------------------------"
 echo user_name: $user_name
@@ -20,7 +25,7 @@ echo "---------------------------"
 ./main-cuda \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPUL" \
+    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \

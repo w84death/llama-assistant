@@ -2,9 +2,9 @@
 Set of scripts for llama.cpp that provide different usefulf assistants scenarios/templates.
 
 ## Assistants
-- chatbot.sh - Generic chat
-- prompt-engineer - Creating prompts for Stable Diffusion
-- email.sh - Helping writing formal emails
+- email.sh - eMailWriter - chat bot shadow writing formal emails for the user
+- prompt-engineer.sh - PromptEngineer - chat bot for creating prompts for Stable Diffusion
+- chatbot.sh - P1XBOT - a generic chat bot with frendly vibe
 
 ## Prepare
 Download model and put it in the /models/ folder. Recommendeed models from [WizardVinunaLM](https://github.com/melodysdreamj/WizardVicunaLM):

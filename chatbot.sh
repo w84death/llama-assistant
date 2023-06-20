@@ -1,8 +1,14 @@
 !/bin/bash
+# P1XBOT - a generic chat bot with frendly vibe
+# Based on the "Miku" prompt. Do not know the original author.
+# Version 1.0
+# (c) 2023 Krzysztof Krystian Jankowski
+
+
 MODEL="Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin"
 
 CORES=2
-GPUL=14
+GPU_L=14
 
 TEMP=0.7
 TOP_K=40
@@ -20,7 +26,7 @@ echo "---------------------------"
 ./main-cuda \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPUL" \
+    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
