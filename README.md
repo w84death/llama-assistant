@@ -98,19 +98,20 @@ Results:
 - 13B model runs at **8ms** per token.
 - 30B model runs at **35ms** per token.
 
-#### Steam Deck
-- AMD (4 cores)
+#### Steam Deck (CPU only)
+- AMD Zen2 (4 cores)
+- Van Gogh 16 GB VRAM (shared with cpu)
 - 16GB RAM
 
 Results:
-- 7B model runs at **??ms** per token.
-- 13B model runs at **??ms** per token.
+- 7B model runs at **134ms** per token.
+- 13B model runs at **287ms** per token.
 - 30B model is out of scope
 
 
 ## Roadplan
 - [ ] checks in script to inform user about empty /models/
 - [ ] Add menu to choose CPU only or CPU+GPU
-- [ ] Steam Deck settings
+- [ ] Steam Deck settings (in menu)
 - [ ] Windows versions (CPU only)
 - [ ] Auto downloading the model

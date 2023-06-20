@@ -5,7 +5,7 @@
 # (c) 2023 Krzysztof Krystian Jankowski
 
 
-MODEL="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_K_M.bin"
+MODEL="Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin"
 
 CORES=2
 GPU_L=14
