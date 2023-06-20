@@ -30,7 +30,7 @@ Best regards,
 ```
 
 ### PromptEngineer
-![PromptEngineer Header Image](promptengineer.jpg)
+![PromptEngineer Header Image](prompt-engineer.jpg)
 Chat bot for creating prompts for Stable Diffusion.
 Script: ```./prompt-engineer.sh```
 
