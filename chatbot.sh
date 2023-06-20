@@ -5,7 +5,7 @@
 # (c) 2023 Krzysztof Krystian Jankowski
 
 
-MODEL="Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin"
+MODEL="wizardlm-13b-v1.0-uncensored.ggmlv3.q5_K_M.bin"
 
 CORES=2
 GPU_L=14
@@ -31,7 +31,7 @@ echo "---------------------------"
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
     --repeat-penalty "$RPEN" \
-    --n-predict 2048 \
+    --n-predict 4096 \
     --ctx-size 2048 \
     --repeat-last-n 256 \
     --batch_size 256 \

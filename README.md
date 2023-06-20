@@ -75,13 +75,38 @@ Just run selected script and start chatting.
 
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 
-### Hardware
-This setup is made for:
-- NVIDIA GeForce RTX 2060 6GB
-- INTEL i3-7100
-- 16GB of RAM
+### Benchmarks
+For Wizard-Vicuna at q5_K_M.
 
-With that setup I get 45ms per token.
+#### P1X PC
+- NVIDIA GeForce RTX 2060 6GB VRAM
+- Intel i3-7100 (2 cores)
+- 16GB RAM
+
+Results:
+- 7B model runs at **14ms** per token.
+- 13B model runs at **28ms** per token.
+- 30B model is out of scope
+
+#### Beffio PC
+- Intel i7-8700 (6 cores)
+- NVIDIA Quadro 8000 48GB VRAM
+- 32GB RAM
+
+Results:
+- 7B model runs at **7ms** per token.
+- 13B model runs at **8ms** per token.
+- 30B model runs at **35ms** per token.
+
+#### Steam Deck
+- AMD (4 cores)
+- 16GB RAM
+
+Results:
+- 7B model runs at **??ms** per token.
+- 13B model runs at **??ms** per token.
+- 30B model is out of scope
+
 
 ## Roadplan
 - [ ] checks in script to inform user about empty /models/

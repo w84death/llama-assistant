@@ -29,10 +29,10 @@ echo "---------------------------"
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
     --repeat-penalty "$RPEN" \
-    --n-predict 2048 \
+    --n-predict 4096 \
     --ctx-size 2048 \
     --repeat-last-n 256 \
-    --batch_size 256 \
+    --batch_size 1024 \
     --color --interactive --interactive-first \
     --prompt-cache "cache/email-writer" \
     --reverse-prompt "${user_name}:" \
