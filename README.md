@@ -7,7 +7,9 @@ Set of scripts for llama.cpp that provide different usefulf assistants scenarios
 - chatbot.sh - P1XBOT - a generic chat bot with frendly vibe
 
 ## Prepare
-Download model and put it in the /models/ folder. Recommendeed models from [WizardVinunaLM](https://github.com/melodysdreamj/WizardVicunaLM):
+Download model and put it in the /models/ folder. You need to create that folder first.
+
+Recommendeed models from [WizardVinunaLM](https://github.com/melodysdreamj/WizardVicunaLM):
 - [Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GGML/resolve/main/Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin) 9.21GB
 
 ## Usage
