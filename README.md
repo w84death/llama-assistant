@@ -76,10 +76,15 @@ Just run selected script and start chatting.
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 
 ### Hardware
-This setup is made for NVIDIA GeForce RTX 2060 6GB, INTEL i3-7100, and 16GB of RAM.
+This setup is made for:
+- NVIDIA GeForce RTX 2060 6GB
+- INTEL i3-7100
+- 16GB of RAM
+
+With that setup I get 45ms per token.
 
 ## Roadplan
-- [done] Initial scripts for testing
 - [ ] Add menu to choose CPU only or CPU+GPU
 - [ ] Steam Deck settings
-- [ ] Windows versions
+- [ ] Windows versions (CPU only)
+- [ ] Auto downloading the model
