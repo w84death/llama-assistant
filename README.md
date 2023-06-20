@@ -1,4 +1,6 @@
 # LLaMA Assistant
+![LLaMA Assistant](llama-assistant.jpg)
+
 Set of scripts for llama.cpp that provide different usefulf assistants scenarios/templates.
 
 ## Features
@@ -10,7 +12,9 @@ Set of scripts for llama.cpp that provide different usefulf assistants scenarios
 
 ### eMailWriter
 ![eMailWriter Header Image](emailwriter.jpg)
+
 Chat bot shadow writing formal emails for the user.
+
 Script: ```./email.sh```
 
 #### Example
@@ -31,7 +35,9 @@ Best regards,
 
 ### PromptEngineer
 ![PromptEngineer Header Image](prompt-engineer.jpg)
+
 Chat bot for creating prompts for Stable Diffusion.
+
 Script: ```./prompt-engineer.sh```
 
 #### Example
@@ -49,7 +55,9 @@ PromptEngineer: Gotcha! Here's your prompt: "An intriguingly surreal rendering o
 
 ### P1XBOT
 ![P1XBOT Header Image](chatbot.jpg)
+
 A generic chat bot with frendly vibe.
+
 Script: ```./chatbot.sh```
 
 ### Usage
