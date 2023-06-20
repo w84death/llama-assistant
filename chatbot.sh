@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # P1XBOT - a generic chat bot with frendly vibe
 # Based on the "Miku" prompt. Do not know the original author.
 # Version 1.0

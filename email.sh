@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # eMailWriter - chat bot shadow writing formal emails for the user
 # Version 1.0
 # (c) 2023 Krzysztof Krystian Jankowski

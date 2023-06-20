@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # PromptEngineer - chat bot for creating prompts for Stable Diffusion
 # Based on the work of u/Ryu116 (https://reddit.com/user/Ryu116/)
 # Version 1.0
