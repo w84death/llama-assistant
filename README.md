@@ -58,56 +58,34 @@ PromptEngineer: Gotcha! Here's your prompt: "An intriguingly surreal rendering o
 
 A generic chat bot with frendly vibe.
 
-Script: ```./chatbot.sh```
+Script ```./chatbot.sh``` or use nice GUI by ```python chatbot.py``` (recommended).
+
+![P1XBOT GUI Screenshot](chatbot-gui.png)
 
 ### Usage
 ### Prepare
-Download model and put it in the /models/ folder. You need to create that folder first.
+Download model and put it in the /models/ folder.
 
-Recommendeed models from [WizardVinunaLM](https://github.com/melodysdreamj/WizardVicunaLM):
+Recommended models 13B:
 - [Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GGML/resolve/main/Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin) 9.21GB
-
-### Run
-Just run selected script and start chatting.
-```
-./chatbot.sh
-```
+- **NEW** [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
 
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 
-### Benchmarks
-For Wizard-Vicuna at q5_K_M.
+DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
-#### P1X PC
+### Hardware
+App default settings are made for my home PC.
+
 - NVIDIA GeForce RTX 2060 6GB VRAM
 - Intel i3-7100 (2 cores)
 - 16GB RAM
 
-Results:
-- 7B model runs at **14ms** per token.
-- 13B model runs at **28ms** per token.
-- 30B model is out of scope
 
-#### Beffio PC
-- Intel i7-8700 (6 cores)
-- NVIDIA Quadro 8000 48GB VRAM
-- 32GB RAM
-
-Results:
-- 7B model runs at **7ms** per token.
-- 13B model runs at **8ms** per token.
-- 30B model runs at **35ms** per token.
-
-#### Steam Deck (CPU only)
+Setting for a Steam Deck (CPU only) coming soon!
 - AMD Zen2 (4 cores)
 - Van Gogh 16 GB VRAM (shared with cpu)
 - 16GB RAM
-
-Results:
-- 7B model runs at **134ms** per token.
-- 13B model runs at **287ms** per token.
-- 30B model is out of scope
-
 
 ## Roadplan
 - [ ] checks in script to inform user about empty /models/
