@@ -35,7 +35,9 @@ class ChatApp:
         self.text_area.tag_config('bot_input', foreground='#8b4513')
 
     def send_message(self, event=None):
-        message = self.entry.get()
+        message = self.entry.get().strip()
+        if not message:
+            return
         self.text_area.insert('end', message + '\n', 'user_input')
         self.text_area.see('end')
         self.process.stdin.write(bytes(message + '\n', 'utf-8'))
