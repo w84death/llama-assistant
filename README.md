@@ -88,6 +88,7 @@ Setting for a Steam Deck (CPU only) coming soon!
 - 16GB RAM
 
 ## Roadplan
+- [ ] auto search for available models
 - [ ] checks in script to inform user about empty /models/
 - [ ] Add menu to choose CPU only or CPU+GPU
 - [ ] Steam Deck settings (in menu)

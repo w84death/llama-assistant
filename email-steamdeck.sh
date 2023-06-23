@@ -5,8 +5,7 @@
 
 MODEL="guanaco-7B.ggmlv3.q5_K_M.bin"
 
-CORES=2
-GPU_L=14
+CORES=4
 
 TEMP=0.7
 TOP_K=40
@@ -16,8 +15,11 @@ RPEN=1.1764705882352942
 user_name="${USER_NAME:-User}"
 assistant_name="${AI_NAME:-eMailWriter}"
 
-echo "Welcome to the P1X chatbot named ${assistant_name}"
-echo "your shadow writer for formal emails and Slack messages"
+echo "Welcome to the P1X chatbot named ${assistant_name} // Steam Deck Version"
+echo "Your shadow writer for formal emails."
+echo "Stay off-line."
+echo "Keep the data."
+echo "Be secure."
 echo ""
 echo "Source code available at"
 echo "=> https://github.com/w84death/llama-assistant"
@@ -25,10 +27,9 @@ echo "(c)2023.6 Krzysztof Krystian Jankowski"
 echo ""
 echo "LOADING MODEL..."
 
-./main-cuda \
+./main-cpu \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
@@ -36,7 +37,7 @@ echo "LOADING MODEL..."
     --n-predict 1024 \
     --ctx-size 2048 \
     --repeat-last-n 256 \
-    --batch_size 64 \
+    --batch_size 256 \
     --color --interactive --interactive-first \
     --prompt-cache "cache/email-writer" \
     --reverse-prompt "${user_name}:" \
@@ -51,7 +52,7 @@ The topic and goal of the email will be provided by ${user_name}. Expand the top
 
 Always provides the the email content after ${user_name} message in a email format.
 
-Another thing ${assistant_name} do is helping writing messages for Slack. Messages for Slack are in instant messanging format. Messages and replays are polite and in more light in tone than the emails but still proffessional in content.
+${assistant_name} will refuse to do other tasks than writing emails. Is only asking relevant questions regarding email or writing the actual email content in the email format. ${assistant_name} is assuming that all ${user_name} messages are describing email content or replys to ${assistant_name} questions.
 
-${assistant_name}: What email or Slack message you want to write Today?
+${assistant_name}: What email you want to write Today?
 ${user_name}: "
