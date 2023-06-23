@@ -12,7 +12,7 @@ class ChatApp:
         self.master = master
         self.master.geometry('480x640')
         self.master.minsize(480, 640)
-        self.master.title('R3DNET V1.0')
+        self.master.title('R3DNET V1.1')
         self.master.config(bg='#f5f5dc')
 
         custom_font = tkfont.Font(family="Georgia", size=12)

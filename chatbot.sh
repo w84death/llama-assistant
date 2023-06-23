@@ -6,11 +6,11 @@
 MODEL="guanaco-13B.ggmlv3.q5_K_M.bin"
 
 CORES=2 # logical cores of the CPU
-GPU_L=16 # how much to sent to the GPU (43 is max for 13B model)
+GPU_L=15 # how much to sent to the GPU (43 is max for 13B model)
 
-TEMP=0.95 # 0.5 focused, 1.5 creative
-TOP_K=50 # 30 focused, 100 more diverese
-TOP_P=0.9 # 0.5 focused, 0.95 more diverse
+TEMP=0.5 # 0.5 focused, 1.5 creative
+TOP_K=30 # 30 focused, 100 more diverese
+TOP_P=0.4 # 0.5 focused, 0.95 more diverse
 RPEN=1.2
 
 user_name="${USER_NAME:-User}"
