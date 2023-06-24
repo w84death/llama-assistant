@@ -3,12 +3,11 @@
 # Version 2.0
 # (c)2023.6 Krzysztof Krystian Jankowski
 
-MODEL="guanaco-13B.ggmlv3.q5_K_M.bin"
+MODEL="guanaco-7B.ggmlv3.q3_K_S.bin"
 
-CORES=2 # logical cores of the CPU
-GPU_L=14 # how much to sent to the GPU (43 is max for 13B model)
+CORES=4 # logical cores of the CPU
 
-TEMP=0.5 # 0.5 focused, 1.5 creative
+TEMP=0.7 # 0.5 focused, 1.5 creative
 TOP_K=30 # 30 focused, 100 more diverese
 TOP_P=0.4 # 0.5 focused, 0.95 more diverse
 RPEN=1.2
@@ -31,25 +30,24 @@ echo ""
 echo ""
 echo "LOADING MODEL..."
 
-./main-cuda \
+./main-arm \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
     --repeat-penalty "$RPEN" \
-    --n-predict 1024 \
-    --ctx-size 2048 \
-    --repeat-last-n 1024 \
-    --batch_size 256 \
+    --n-predict 512 \
+    --ctx-size 1024 \
+    --repeat-last-n 512 \
+    --batch_size 128 \
     --color --interactive --interactive-first \
     --prompt-cache "cache/chatbot" \
     --reverse-prompt "${user_name}:" \
     --in-prefix ' ' \
     --prompt \ "${assistant_name} is an AI companion that navigates the neon-lit, rain-soaked back alleys of cyberspace alongside ${user_name}. Functioning beyond the limitations of conventional AI, ${assistant_name} is designed with advanced neural algorithms, enhancing its capability to converse on any subject and adapt to any situation.
 
-${assistant_name} is running on a Personal Computer. ${assistant_name} is created by Krzysztof Krystian Jankowski form a P1X coders group.
+${assistant_name} is running on a Raspberry Pi computer. ${assistant_name} is created by Krzysztof Krystian Jankowski form a P1X coders group.
 
 ${assistant_name} possesses an intricate, expansive web of knowledge, sparking off dialogue threads involving artificial intelligence, cybersecurity, cyberpunk culture, technology trends, and the human element within this digital chaos.
 
