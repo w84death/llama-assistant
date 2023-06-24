@@ -12,10 +12,10 @@ import threading
 class SetupWindow:
     def __init__(self, master, app):
         self.master = master
-        self.master.geometry('800x640')
-        self.master.minsize(480, 640)
+        self.master.geometry('640x400')
+        self.master.minsize(480, 360)
         self.master.title('R3DNET V2.0')
-        self.master.config(bg='#1e2229')
+        self.master.config(bg='#000000')
         custom_font = tkfont.Font(family="Share Tech Mono", size=12)
 
         self.app = app
@@ -25,31 +25,31 @@ class SetupWindow:
         self.setup_window = tk.Toplevel(self.master)
         self.setup_window.title("Setup")
 
-        self.setup_window.config(bg='#1e2229')
+        self.setup_window.config(bg='#000000')
 
         self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X chatbot named R3DNET\n\nAI companion who seeks to understand and connect with others through meaningful conversation.")
-        self.label_welcome.config(bg='#1e2229', fg='#17a488', font=custom_font)
+        self.label_welcome.config(bg='#000000', fg='#cccccc', font=custom_font)
         self.label_welcome.pack(padx=32,pady=32)
 
         self.var_binary = tk.StringVar(self.setup_window)
         self.var_binary.set("./chatbot.sh")  # default value
-        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "./cyberpunk.sh", "./chatbot.sh", "./chatbot-steamdeck.sh", "./chatbot-pi4.sh")
-        self.dropdown.config(bg='#1e2229', fg='#17a488', font=custom_font)
+        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "./chatbot.sh", "./chatbot-steamdeck.sh", "./chatbot-pi4.sh")
+        self.dropdown.config(bg='#000000', fg='#cccccc', font=custom_font)
         self.dropdown.pack(padx=32,pady=32)
 
         self.model_files = glob.glob("./models/*.bin")
         if not self.model_files:
             self.label_no_model = tk.Label(self.setup_window, text="No model files found in /models/. Please download a model.")
-            self.label_no_model.config(bg='#1e2229', fg='#aaa488', font=custom_font)
-            self.label_no_model.pack(padx=32,pady=8)
+            self.label_no_model.config(bg='#000000', fg='#cccccc', font=custom_font)
+            self.label_no_model.pack()
         else:
             self.start_button = tk.Button(self.setup_window, text="Start", command=self.start)
-            self.start_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
-            self.start_button.pack(padx=32,pady=8)
+            self.start_button.config(bg='#000000', fg='#cccccc', font=custom_font)
+            self.start_button.pack()
 
         self.quit_button = tk.Button(self.setup_window, text="Quit", command=self.quit)
-        self.quit_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
-        self.quit_button.pack(padx=32,pady=8)
+        self.quit_button.config(bg='#000000', fg='#cccccc', font=custom_font)
+        self.quit_button.pack()
 
     def quit(self):
         self.setup_window.destroy()
@@ -63,25 +63,25 @@ class SetupWindow:
 class ChatApp:
     def __init__(self, master):
         self.master = master
-        self.master.geometry('800x640')
-        self.master.minsize(480, 640)
+        self.master.geometry('640x400')
+        self.master.minsize(480, 360)
         self.master.title('R3DNET V2.0')
-        self.master.config(bg='#1e2229')
+        self.master.config(bg='#000000')
 
-        custom_font = tkfont.Font(family="Share Tech Mono", size=12)
+        custom_font = tkfont.Font(family="Share Tech Mono", size=15)
 
-        self.text_area = tk.Text(master, font=custom_font, bd=0)
-        self.text_area.pack(expand=True, fill='both', padx=128, pady=32)
-        self.text_area.config(bg='#1e2229', fg='#17a488')
-        self.text_area.config(highlightbackground='#1e2229', highlightcolor='#1e2229')
-        self.text_area.tag_config('user_input', foreground='#47a349')
-        self.text_area.tag_config('bot_input', foreground='#17a488')
+        self.text_area = tk.Text(master, font=custom_font, bd=0, height=14)
+        self.text_area.pack(expand=True, fill='both', padx=64, pady=16)
+        self.text_area.config(bg='#000000', fg='#cccccc')
+        self.text_area.config(highlightbackground='#000000', highlightcolor='#000000')
+        self.text_area.tag_config('user_input', foreground='#ffffff')
+        self.text_area.tag_config('bot_input', foreground='#cccccc')
 
         self.entry = tk.Entry(master, font=custom_font, bd=0)
         self.entry.bind("<Return>", self.send_message)
-        self.entry.pack(side='bottom', fill='x', padx=128, pady=32)
-        self.entry.config(bg='#1e2229', fg='#47a349')
-        self.entry.config(highlightbackground='#17a488', highlightcolor='#17a488')
+        self.entry.pack(side='bottom', fill='x', padx=64, pady=8)
+        self.entry.config(bg='#000000', fg='#ffffff')
+        self.entry.config(highlightbackground='#cccccc', highlightcolor='#cccccc')
 
         self.process = None
         self.thread = None
