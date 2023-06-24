@@ -67,8 +67,11 @@ Script ```./chatbot.sh``` or use nice GUI by ```python chatbot.py``` (recommende
 Download model and put it in the /models/ folder.
 
 Recommended models 13B:
-- [Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GGML/resolve/main/Wizard-Vicuna-13B-Uncensored.ggmlv3.q5_K_M.bin) 9.21GB
-- **NEW** [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
+- [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
+
+If you want to use GUI install font:
+- [Share The Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
+- use the file from repo [ShareTechMono-Regular.ttf](ShareTechMono-Regular.ttf)
 
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 

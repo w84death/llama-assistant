@@ -10,29 +10,29 @@ import threading
 class ChatApp:
     def __init__(self, master):
         self.master = master
-        self.master.geometry('480x640')
+        self.master.geometry('800x640')
         self.master.minsize(480, 640)
-        self.master.title('R3DNET V1.1')
-        self.master.config(bg='#f5f5dc')
+        self.master.title('R3DNET V2.0')
+        self.master.config(bg='#1e2229')
 
-        custom_font = tkfont.Font(family="Georgia", size=12)
+        custom_font = tkfont.Font(family="Share Tech Mono", size=12)
 
         self.text_area = tk.Text(master, font=custom_font, bd=0)
-        self.text_area.pack(expand=True, fill='both', padx=10, pady=10)
-        self.text_area.config(bg='#f5f5dc', fg='#556b2f')
-        self.text_area.config(highlightbackground='#f5f5dc', highlightcolor='#f5f5dc')
+        self.text_area.pack(expand=True, fill='both', padx=128, pady=32)
+        self.text_area.config(bg='#1e2229', fg='#17a488')
+        self.text_area.config(highlightbackground='#1e2229', highlightcolor='#1e2229')
 
-        self.entry = tk.Entry(master, font=custom_font, bd=2)
+        self.entry = tk.Entry(master, font=custom_font, bd=0)
         self.entry.bind("<Return>", self.send_message)
-        self.entry.pack(side='bottom', fill='x', padx=10, pady=10)
-        self.entry.config(bg='#f5f5dc', fg='#8b4513')
-        self.entry.config(highlightbackground='#8b4513', highlightcolor='#8b4513')
+        self.entry.pack(side='bottom', fill='x', padx=128, pady=32)
+        self.entry.config(bg='#1e2229', fg='#47a349')
+        self.entry.config(highlightbackground='#17a488', highlightcolor='#17a488')
 
         self.process = Popen(["stdbuf", "-o0", "./chatbot.sh"], stdin=PIPE, stdout=PIPE, stderr=PIPE, bufsize=1)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
-        self.text_area.tag_config('user_input', foreground='#8b4513')
-        self.text_area.tag_config('bot_input', foreground='#8b4513')
+        self.text_area.tag_config('user_input', foreground='#47a349')
+        self.text_area.tag_config('bot_input', foreground='#17a488')
 
     def send_message(self, event=None):
         message = self.entry.get().strip()
