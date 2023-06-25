@@ -73,9 +73,9 @@ class ChatApp:
         self.text_area = tk.Text(master, font=custom_font, bd=0)
         self.text_area.pack(expand=True, fill='both', padx=128, pady=32)
         self.text_area.config(bg='#1e2229', fg='#17a488')
-        self.text_area.config(highlightbackground='#1e2229', highlightcolor='#1e2229')
+        self.text_area.config(highlightbackground='#1e2229', highlightcolor='#1e2229', insertbackground='#47a349')
         self.text_area.tag_config('user_input', foreground='#47a349')
-        self.text_area.tag_config('bot_input', foreground='#17a488', insertbackground='#47a349')
+        self.text_area.tag_config('bot_input', foreground='#17a488')
 
         self.send_return_button = tk.Button(master, text="Continue", command=self.send_return)
         self.send_return_button.config(bg='#1e2229', fg='#47a349')
