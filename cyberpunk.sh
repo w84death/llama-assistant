@@ -5,6 +5,7 @@
 
 MODEL="guanaco-13B.ggmlv3.q5_K_M.bin"
 
+
 CORES=2 # logical cores of the CPU
 GPU_L=14 # how much to sent to the GPU (43 is max for 13B model)
 
@@ -12,6 +13,12 @@ TEMP=0.5 # 0.5 focused, 1.5 creative
 TOP_K=40 # 30 focused, 100 more diverese
 TOP_P=0.4 # 0.5 focused, 0.95 more diverse
 RPEN=1.2
+
+if [ -z "$1" ]; then
+  SEED="-1"
+else
+  SEED="$1"
+fi
 
 user_name="${USER_NAME:-User}"
 assistant_name="${AI_NAME:-R3DNET}"
@@ -44,10 +51,12 @@ echo "LOADING MODEL..."
     --ctx-size 2048 \
     --repeat-last-n 1024 \
     --batch_size 512 \
+    --keep "-1" \
     --color --interactive \
     --prompt-cache "cache/cyberpunk" \
     --reverse-prompt "${user_name}:" \
     --in-prefix ' ' \
+    --seed "$SEED" \
     --prompt \ "Welcome to your narrative journey with ${assistant_name}, a sophisticated AI designed to be a master storyteller, spinning tales of action, intrigue, and suspense in a cyberpunk world of the near future. ${assistant_name} weaves narratives where ${user_name} takes the leading role, facing challenges and making decisions that shape the course of the story.
 
 Each of ${assistant_name}'s tales unfolds in a vibrant cyberpunk setting, a cityscape drenched in neon and shadow where high-tech marvels clash with low-life survival. ${assistant_name} creates this immersive backdrop with vivid descriptions, making ${user_name} feel as if they're navigating the city's labyrinthine streets, facing its unique inhabitants, and making critical decisions.
