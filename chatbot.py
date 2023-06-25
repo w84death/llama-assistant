@@ -14,7 +14,7 @@ class SetupWindow:
         self.master = master
         self.master.geometry('800x640')
         self.master.minsize(480, 640)
-        self.master.title('R3DNET V2.0')
+        self.master.title('LLaMA Assistant')
         self.master.config(bg='#1e2229')
         custom_font = tkfont.Font(family="Share Tech Mono", size=12)
 
@@ -27,7 +27,7 @@ class SetupWindow:
 
         self.setup_window.config(bg='#1e2229')
 
-        self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X chatbot named R3DNET\n\nAI companion who seeks to understand and connect with others through meaningful conversation.")
+        self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X LLaMA Assistant\n\nChoose the chatbot.")
         self.label_welcome.config(bg='#1e2229', fg='#17a488', font=custom_font)
         self.label_welcome.pack(padx=32,pady=32)
 
@@ -65,7 +65,7 @@ class ChatApp:
         self.master = master
         self.master.geometry('800x640')
         self.master.minsize(480, 640)
-        self.master.title('R3DNET V2.0')
+        self.master.title('R3DNET V2.1')
         self.master.config(bg='#1e2229')
 
         custom_font = tkfont.Font(family="Share Tech Mono", size=12)
@@ -75,13 +75,17 @@ class ChatApp:
         self.text_area.config(bg='#1e2229', fg='#17a488')
         self.text_area.config(highlightbackground='#1e2229', highlightcolor='#1e2229')
         self.text_area.tag_config('user_input', foreground='#47a349')
-        self.text_area.tag_config('bot_input', foreground='#17a488')
+        self.text_area.tag_config('bot_input', foreground='#17a488', insertbackground='#47a349')
 
-        self.entry = tk.Entry(master, font=custom_font, bd=0)
+        self.send_return_button = tk.Button(master, text="Continue", command=self.send_return)
+        self.send_return_button.config(bg='#1e2229', fg='#47a349')
+        self.send_return_button.pack(padx=128)
+
+        self.entry = tk.Entry(master, font=custom_font, bd=0, width=100)
         self.entry.bind("<Return>", self.send_message)
         self.entry.pack(side='bottom', fill='x', padx=128, pady=32)
         self.entry.config(bg='#1e2229', fg='#47a349')
-        self.entry.config(highlightbackground='#17a488', highlightcolor='#17a488')
+        self.entry.config(highlightbackground='#17a488', highlightcolor='#17a488', insertbackground='#47a349')
 
         self.process = None
         self.thread = None
@@ -91,6 +95,11 @@ class ChatApp:
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE, bufsize=1)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
+
+    def send_return(self):
+        if self.process is not None and self.process.poll() is None:
+            self.process.stdin.write(b'\n')
+            self.process.stdin.flush()
 
     def send_message(self, event=None):
         message = self.entry.get().strip()
