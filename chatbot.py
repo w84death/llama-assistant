@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import font as tkfont
 from subprocess import Popen, PIPE
 import threading
+import datetime
 
 class SetupWindow:
     def __init__(self, master, app):
@@ -27,7 +28,7 @@ class SetupWindow:
 
         self.setup_window.config(bg='#1e2229')
 
-        self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X LLaMA Assistant\n\nChoose the chatbot.")
+        self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X LLaMA Assistant\n\nChoose the chatbot.\nUse [CTRL]+[S] to save the chat log.")
         self.label_welcome.config(bg='#1e2229', fg='#17a488', font=custom_font)
         self.label_welcome.pack(padx=32,pady=32)
 
@@ -43,11 +44,11 @@ class SetupWindow:
             self.label_no_model.config(bg='#1e2229', fg='#aaa488', font=custom_font)
             self.label_no_model.pack(padx=32,pady=8)
         else:
-            self.start_button = tk.Button(self.setup_window, text="Start", command=self.start)
+            self.start_button = tk.Button(self.setup_window, text="Start", command=self.start, bd=0, activebackground='#47a349', activeforeground='#1e2229')
             self.start_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
             self.start_button.pack(padx=32,pady=8)
 
-        self.quit_button = tk.Button(self.setup_window, text="Quit", command=self.quit)
+        self.quit_button = tk.Button(self.setup_window, text="Quit", command=self.quit, bd=0, activebackground='#47a349', activeforeground='#1e2229')
         self.quit_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
         self.quit_button.pack(padx=32,pady=8)
 
@@ -77,7 +78,7 @@ class ChatApp:
         self.text_area.tag_config('user_input', foreground='#47a349')
         self.text_area.tag_config('bot_input', foreground='#17a488')
 
-        self.send_return_button = tk.Button(master, text="Continue", command=self.send_return)
+        self.send_return_button = tk.Button(master, text="Continue", command=self.send_return, font=custom_font, bd=0, activebackground='#47a349', activeforeground='#1e2229')
         self.send_return_button.config(bg='#1e2229', fg='#47a349')
         self.send_return_button.pack(padx=128)
 
@@ -87,12 +88,16 @@ class ChatApp:
         self.entry.config(bg='#1e2229', fg='#47a349')
         self.entry.config(highlightbackground='#17a488', highlightcolor='#17a488', insertbackground='#47a349')
 
+        self.entry.focus_set()
+
+        self.master.bind('<Control-s>', self.save_content)
+
         self.process = None
         self.thread = None
         SetupWindow(master, self)  # Display setup window
 
     def start_chatbot(self, binary_name):
-        self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE, bufsize=1)
+        self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
 
@@ -122,6 +127,14 @@ class ChatApp:
             if output:
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
+
+    def save_content(self, event=None):
+        content = self.text_area.get('1.0', 'end-1c')
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        with open(f'chatlog_{timestamp}.txt', 'w') as f:
+            f.write(content)
+        self.text_area.insert('end', '\n> Chat log saved to chatlog_'+timestamp+'.txt\n', 'user_input')
+
 
 root = tk.Tk()
 app = ChatApp(root)
