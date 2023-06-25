@@ -13,7 +13,7 @@ import datetime
 class SetupWindow:
     def __init__(self, master, app):
         self.master = master
-        self.master.geometry('800x640')
+        self.master.geometry('640x800')
         self.master.minsize(480, 640)
         self.master.title('P1X LLaMA Assistant')
         self.master.config(bg='#1e2229')
@@ -69,7 +69,7 @@ class SetupWindow:
 class ChatApp:
     def __init__(self, master):
         self.master = master
-        self.master.geometry('800x640')
+        self.master.geometry('640x800')
         self.master.minsize(480, 640)
         self.master.title('P1X LLaMA Assistant')
         self.master.config(bg='#1e2229')
