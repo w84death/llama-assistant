@@ -53,14 +53,12 @@ User: Another prompt: about AI writing emails, abstract
 PromptEngineer: Gotcha! Here's your prompt: "An intriguingly surreal rendering of a sentient machine generating creative and thoughtful electronic correspondence, presented in a visually striking and avant-garde style that challenges traditional notions of digital communication."
 ```
 
-### P1XBOT
-![P1XBOT Header Image](chatbot.jpg)
+### GUI
+Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
 
-A generic chat bot with frendly vibe.
+![Assistant GUI Setup Screenshot](assistant-setup.png)
 
-Script ```./chatbot.sh``` or use nice GUI by ```python chatbot.py``` (recommended).
-
-![P1XBOT GUI Screenshot](chatbot-gui.png)
+![Assistant GUI Main screen Screenshot](assistant-main.png)
 
 ### Usage
 ### Prepare
@@ -78,19 +76,24 @@ DISCLAMER: First run will take a while as it needs to create cache file. Be pati
 DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
 ### Hardware
-App default settings are made for my home PC.
+App default settings are made for my home PC. Dedicated scripts for slower computer are included.
 
+#### PC (default)
 - NVIDIA GeForce RTX 2060 6GB VRAM
 - Intel i3-7100 (2 cores)
 - 16GB RAM
 
-
-Setting for a Steam Deck (CPU only) coming soon!
+#### Steam Deck
 - AMD Zen2 (4 cores)
 - Van Gogh 16 GB VRAM (shared with cpu)
 - 16GB RAM
 
+#### Raspberry Pi 4
+- Broadcom BCM2711, Cortex-A72 (4 cores)
+- 4GB RAM
+
 ## Roadplan
+Those things are not implemented but planned.
 - [ ] one file for system prompt
 - [ ] Add menu to choose CPU only or CPU+GPU
 - [ ] Windows versions (CPU only)
