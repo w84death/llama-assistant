@@ -9,6 +9,8 @@ from tkinter import font as tkfont
 from subprocess import Popen, PIPE
 import threading
 import datetime
+from gtts import gTTS
+import os
 
 class SetupWindow:
     def __init__(self, master, app):
@@ -21,7 +23,6 @@ class SetupWindow:
 
         self.app = app
         self.master.withdraw()  # Hide the main window until setup is done
-
 
         self.setup_window = tk.Toplevel(self.master)
         self.setup_window.geometry('640x480')
@@ -56,6 +57,8 @@ class SetupWindow:
         self.quit_button = tk.Button(self.setup_window, text="Quit", command=self.quit, bd=0, activebackground='#47a349', activeforeground='#1e2229')
         self.quit_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
         self.quit_button.pack(side='left', padx=32,pady=8)
+        self.speak_lock = threading.Condition()
+        self.app.speak("Welcome to the P1X LLaMA Assistant")
 
     def quit(self):
         self.setup_window.destroy()
@@ -68,6 +71,7 @@ class SetupWindow:
 
 class ChatApp:
     def __init__(self, master):
+        self.read_enabled = False
         self.master = master
         self.master.geometry('640x800')
         self.master.minsize(480, 640)
@@ -97,6 +101,10 @@ class ChatApp:
 
         self.master.bind('<Control-s>', self.save_content)
 
+        self.read_button = tk.Button(master, text="Read", command=self.toggle_reading, font=custom_font, bd=0, activebackground='#47a349', activeforeground='#1e2229')
+        self.read_button.config(bg='#1e2229', fg='#47a349')
+        self.read_button.pack(side='left', padx=32)
+
         self.process = None
         self.thread = None
         SetupWindow(master, self)  # Display setup window
@@ -105,6 +113,22 @@ class ChatApp:
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
+
+    def toggle_reading(self):
+        self.read_enabled = not self.read_enabled
+
+    def speak(self, text):
+        def run():
+            import tempfile
+            tts = gTTS(text=text, lang='en')
+
+            temp_filename = tempfile.mktemp(suffix=".mp3")
+            tts.save(temp_filename)
+            os.system(f"mpg123 {temp_filename}")
+            os.remove(temp_filename)
+
+        thread = threading.Thread(target=run)
+        thread.start()
 
     def send_return(self):
         if self.process is not None and self.process.poll() is None:
@@ -122,6 +146,7 @@ class ChatApp:
         self.entry.delete(0, 'end')
 
     def read_output(self):
+        buffer = ''
         while True:
             try:
                 output = self.process.stdout.read(1).decode()
@@ -130,6 +155,11 @@ class ChatApp:
             if output == '' and self.process.poll() is not None:
                 break
             if output:
+                if self.read_enabled:
+                    buffer += output
+                    if output == '\n' or output == '.':
+                        self.speak(buffer)
+                        buffer = ''
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
 

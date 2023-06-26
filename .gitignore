@@ -7,3 +7,4 @@ dist/
 *.spec
 *.kate-swp
 chatlog_*.txt
+temp.mp3
