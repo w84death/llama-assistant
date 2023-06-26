@@ -11,6 +11,7 @@ import threading
 import datetime
 from gtts import gTTS
 import os
+from queue import Queue
 
 class SetupWindow:
     def __init__(self, master, app):
@@ -57,8 +58,8 @@ class SetupWindow:
         self.quit_button = tk.Button(self.setup_window, text="Quit", command=self.quit, bd=0, activebackground='#47a349', activeforeground='#1e2229')
         self.quit_button.config(bg='#1e2229', fg='#17a488', font=custom_font)
         self.quit_button.pack(side='left', padx=32,pady=8)
-        self.speak_lock = threading.Condition()
-        self.app.speak("Welcome to the P1X LLaMA Assistant")
+
+        self.app.queue.put("Welcome to the P1X LLaMA Assistant")
 
     def quit(self):
         self.setup_window.destroy()
@@ -105,6 +106,9 @@ class ChatApp:
         self.read_button.config(bg='#1e2229', fg='#47a349')
         self.read_button.pack(side='left', padx=32)
 
+        self.queue = Queue()
+        self.speak_thread()
+
         self.process = None
         self.thread = None
         SetupWindow(master, self)  # Display setup window
@@ -117,15 +121,18 @@ class ChatApp:
     def toggle_reading(self):
         self.read_enabled = not self.read_enabled
 
-    def speak(self, text):
+    def speak_thread(self):
         def run():
             import tempfile
-            tts = gTTS(text=text, lang='en')
-
-            temp_filename = tempfile.mktemp(suffix=".mp3")
-            tts.save(temp_filename)
-            os.system(f"mpg123 {temp_filename}")
-            os.remove(temp_filename)
+            while True:
+                text = self.queue.get()
+                if text:
+                    tts = gTTS(text=text, lang='en')
+                    temp_filename = tempfile.mktemp(suffix=".mp3")
+                    tts.save(temp_filename)
+                    os.system(f"mpg123 {temp_filename}")
+                    os.remove(temp_filename)
+                self.queue.task_done()
 
         thread = threading.Thread(target=run)
         thread.start()
@@ -158,7 +165,7 @@ class ChatApp:
                 if self.read_enabled:
                     buffer += output
                     if output == '\n' or output == '.':
-                        self.speak(buffer)
+                        self.queue.put(buffer)
                         buffer = ''
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
