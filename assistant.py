@@ -125,8 +125,8 @@ class ChatApp:
         def run():
             import tempfile
             while True:
-                text = self.queue.get()
-                if text:
+                text = self.queue.get().strip()  # Strip leading/trailing whitespace
+                if any(char.isalnum() for char in text):  # If the text contains any alphanumeric characters
                     tts = gTTS(text=text, lang='en')
                     temp_filename = tempfile.mktemp(suffix=".mp3")
                     tts.save(temp_filename)
