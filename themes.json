@@ -1,0 +1,26 @@
+{
+    "cyberpunk": {
+        "bg_color": "#1e2229",
+        "fg_color": "#17a488",
+        "button_color": "#47a349",
+        "window_size": "800x640",
+        "padding": [128, 32],
+        "font-size": 15
+    },
+    "crt": {
+        "bg_color": "#000000",
+        "fg_color": "#ffffff",
+        "button_color": "#444444",
+        "window_size": "480x360",
+        "padding": [8, 4],
+        "font-size": 15
+    },
+    "paper": {
+        "bg_color": "#f5f5dc",
+        "fg_color": "#556b2f",
+        "button_color": "#556b2f",
+        "window_size": "800x640",
+        "padding": [128, 32],
+        "font-size": 15
+    }
+}
