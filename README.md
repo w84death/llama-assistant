@@ -36,6 +36,9 @@ DISCLAMER2: Remember that changing models requies removing cache from /cache/ fo
 
 ## Assistants
 ### R3DNET
+R3DNET - your personal cyberpunk storyteller
+
+Script: `./cyberpunk.sh`
 
 ### eMailWriter
 ![eMailWriter Header Image](emailwriter.jpg)
