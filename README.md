@@ -3,20 +3,22 @@
 
 Set of scripts for llama.cpp that provide different usefulf assistants scenarios/templates.
 
+Build on top of [llama.cpp](https://github.com/ggerganov/llama.cpp).
+
 ## Features
 - Security: off-line and self-hosted
 - Hardware: runs on any PC, works very well with good GPU
 - Easy: tailored bots for one particular job
 - Accessibility: uses gTTL for screen reading messages
 
-## GUI
+### GUI
 Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
 
 ![Assistant GUI Setup Screenshot](assistant-setup.png)
 
 ![Assistant GUI Main screen Screenshot](assistant-main.png)
 
-## Usage
+### Usage
 ### Prepare
 Download model and put it in the /models/ folder.
 
@@ -30,6 +32,8 @@ If you want to use GUI install font:
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 
 DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
+
+Compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) app and copy it to this project replacing main, main-cuda, or main-arm.
 
 ### Run
 ```./assistant```
@@ -82,6 +86,7 @@ Is there anything else I can assist you with?
 User: Another prompt: about AI writing emails, abstract
 PromptEngineer: Gotcha! Here's your prompt: "An intriguingly surreal rendering of a sentient machine generating creative and thoughtful electronic correspondence, presented in a visually striking and avant-garde style that challenges traditional notions of digital communication."
 ```
+
 
 ### Hardware
 App default settings are made for my home PC. Dedicated scripts for slower computer are included.
