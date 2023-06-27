@@ -7,13 +7,40 @@ Set of scripts for llama.cpp that provide different usefulf assistants scenarios
 - Security: off-line and self-hosted
 - Hardware: runs on any PC, works very well with good GPU
 - Easy: tailored bots for one particular job
+- Accessibility: uses gTTL for screen reading messages
+
+## GUI
+Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
+
+![Assistant GUI Setup Screenshot](assistant-setup.png)
+
+![Assistant GUI Main screen Screenshot](assistant-main.png)
+
+## Usage
+### Prepare
+Download model and put it in the /models/ folder.
+
+Recommended models 13B:
+- [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
+
+If you want to use GUI install font:
+- [Share The Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
+- use the file from repo [ShareTechMono-Regular.ttf](ShareTechMono-Regular.ttf)
+
+DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
+
+DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
+
+### Run
+```./assistant```
 
 ## Assistants
+### R3DNET
 
 ### eMailWriter
 ![eMailWriter Header Image](emailwriter.jpg)
 
-Chat bot shadow writing formal emails for the user.
+(WORK IN PROGRESS) Chat bot shadow writing formal emails for the user.
 
 Script: ```./email.sh```
 
@@ -52,28 +79,6 @@ Is there anything else I can assist you with?
 User: Another prompt: about AI writing emails, abstract
 PromptEngineer: Gotcha! Here's your prompt: "An intriguingly surreal rendering of a sentient machine generating creative and thoughtful electronic correspondence, presented in a visually striking and avant-garde style that challenges traditional notions of digital communication."
 ```
-
-### GUI
-Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
-
-![Assistant GUI Setup Screenshot](assistant-setup.png)
-
-![Assistant GUI Main screen Screenshot](assistant-main.png)
-
-### Usage
-### Prepare
-Download model and put it in the /models/ folder.
-
-Recommended models 13B:
-- [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
-
-If you want to use GUI install font:
-- [Share The Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
-- use the file from repo [ShareTechMono-Regular.ttf](ShareTechMono-Regular.ttf)
-
-DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
-
-DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
 ### Hardware
 App default settings are made for my home PC. Dedicated scripts for slower computer are included.
