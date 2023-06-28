@@ -1,15 +1,17 @@
 # LLaMA Assistant
 ![LLaMA Assistant](llama-assistant.jpg)
 
-Set of scripts for llama.cpp that provide different usefulf assistants scenarios/templates.
+Set of scripts, and GUI application for [llama.cpp](https://github.com/ggerganov/llama.cpp) that provide different usefulf assistants scenarios/templates.
 
-Build on top of [llama.cpp](https://github.com/ggerganov/llama.cpp).
+Build on top of the excelent [llama.cpp](https://github.com/ggerganov/llama.cpp) using guanaco model.
 
 ## Features
 - Security: off-line and self-hosted
 - Hardware: runs on any PC, works very well with good GPU
 - Easy: tailored bots for one particular job
-- Accessibility: uses gTTL for screen reading messages
+- Accessibility: uses gTTS for screen reading messages
+- Cool: nice GUI with themes for each bot
+- Experimental: bots can request Stable Diffusion image generation
 
 ### GUI
 Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
@@ -18,25 +20,39 @@ Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assi
 
 ![Assistant GUI Main screen Screenshot](assistant-main.png)
 
+- runs on Windows nad Linux
+- easy to modify
+- themes: cyberpunk, CRT (for my small screen), paper
+- screen reader (gTTS at the moment, I will change that to something more free)
+- connection to Stable Diffusion server
+
 ### Usage
 ### Prepare
-Download model and put it in the /models/ folder.
+
+1. Download model and put it in the /models/ folder.
 
 Recommended models 13B:
 - [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
 
-If you want to use GUI install font:
+2. If you want to use GUI install font:
 - [Share The Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
 - use the file from repo [ShareTechMono-Regular.ttf](ShareTechMono-Regular.ttf)
 
-DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
+3. If main binary do not run compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) app and copy it to this project replacing main, main-cuda, or main-arm.
 
-DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
+CPU only, main:
+```make -j```
 
-Compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) app and copy it to this project replacing main, main-cuda, or main-arm.
+CPU+GPU, main-cuda:
+```make LLAMA_CUBLAS=1 -j```
+
+4. Tweak each script to adjust to your PC.
 
 ### Run
 ```./assistant```
+   
+DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
+DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
 ## Assistants
 ### R3DNET
