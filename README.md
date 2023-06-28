@@ -3,7 +3,7 @@
 
 Set of scripts, and GUI application for [llama.cpp](https://github.com/ggerganov/llama.cpp) that provide different usefulf assistants scenarios/templates.
 
-Build on top of the excelent [llama.cpp](https://github.com/ggerganov/llama.cpp) using guanaco model.
+Build on top of the excelent [llama.cpp](https://github.com/ggerganov/llama.cpp) using [guanaco models](https://old.reddit.com/r/LocalLLaMA/comments/13rthln/guanaco_7b_13b_33b_and_65b_models_by_tim_dettmers/).
 
 ## Features
 - Security: off-line and self-hosted
