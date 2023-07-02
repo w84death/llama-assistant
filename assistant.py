@@ -191,8 +191,6 @@ class ChatApp:
         self.entry.delete(0, 'end')
 
     def read_output(self):
-        description_tag_open = "[image_prompt]"
-        description_tag_close = "[end]"
         capture_description = False
         description_text = ""
         buffer = ""
@@ -206,8 +204,7 @@ class ChatApp:
             if output == '' and self.process.poll() is not None:
                 break
             if output:
-                if not self.image_generation and "Voice enabled." in self.text_area.get("1.0", 'end'):
-                    self.image_generation = True
+                if not self.read_enabled and "Voice enabled." in self.text_area.get("1.0", 'end'):
                     self.read_enabled = True
 
                 if self.read_enabled:
@@ -220,23 +217,6 @@ class ChatApp:
 
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
-
-                if self.image_generation:
-                    tag_buffer += output
-                    if capture_description:
-                        description_text += output
-                        if description_tag_close in description_text:
-                            description_text = description_text.replace(description_tag_open, "").replace(description_tag_close, "")
-                            self.generate_image(description_text.strip())
-                            capture_description = False
-                            self.read_enabled = True
-                            description_text = ''
-                            buffer = ''
-                            tag_buffer = ''
-                    else:
-                        if description_tag_open in tag_buffer:
-                            capture_description = True
-                            self.read_enabled = False
 
 
     def generate_image(self, prompt):
