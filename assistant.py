@@ -154,7 +154,7 @@ class ChatApp:
             while True:
                 text = self.audio_queue.get().strip()
                 if any(char.isalnum() for char in text):
-                    subprocess.run(['espeak', '-s', '150', '-p', '20', '-ven-us', text])
+                    subprocess.run(['spd-say', '-p', '-20', '-l', 'us', text])
                 self.audio_queue.task_done()
 
         thread = threading.Thread(target=run)
@@ -198,7 +198,7 @@ class ChatApp:
 
                 if self.read_enabled:
                     buffer += output
-                    if output == '\n' or output == '.':
+                    if output == '\n' or output == '.' or output == '?' or output == '!':
                         buffer = buffer.replace("Computer: ", "", 1)
                         self.audio_queue.put(buffer)
                         buffer = ''
