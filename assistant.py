@@ -50,7 +50,7 @@ class SetupWindow:
 
         self.var_binary = tk.StringVar(self.setup_window)
         self.var_binary.set("./cyberpunk.sh")  # default value
-        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "./cyberpunk.sh", "./chatbot.sh",  "./email.sh", "./chatbot-pi4.sh", "./chatbot-steamdeck.sh", "./email-steamdeck.sh")
+        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "./cyberpunk.sh", "./chatbot.sh",  "./email.sh", "./pi4-chatbot.sh", "./steamdeck-chatbot.sh", "./steamdeck-cyberpunk.sh","./steamdeck-email.sh")
         self.dropdown.config(bg='#1e2229', fg='#17a488', font=self.custom_font)
         self.dropdown.pack(padx=32,pady=4)
 
