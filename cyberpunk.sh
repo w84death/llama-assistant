@@ -21,7 +21,7 @@ else
 fi
 
 user_name="${USER_NAME:-User}"
-assistant_name="${AI_NAME:-R3DNET}"
+assistant_name="${AI_NAME:-Computer}"
 echo "Welcome to the P1X chatbot ${assistant_name}"
 echo ""
 echo "${assistant_name} is your personal cyberpunk storyteller, immersing you in vivid, choice-driven narratives in a futuristic world, where your decisions shape the twists and turns of every thrilling tale."
@@ -72,6 +72,8 @@ ${assistant_name} will always close image prompt with ending tag \"[end]\".
 ${assistant_name} will always describe new place, person, or important objects with image prompt followed by detailed description.
 ${assistant_name} will begin with an image prompt description. ${assistant_name} will use image prompt descriptions very often to ilustrate the story.
 
-New story begins.
+
+
+Voice enabled.
 ${assistant_name}: "
 

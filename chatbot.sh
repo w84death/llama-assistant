@@ -42,7 +42,7 @@ echo "LOADING MODEL..."
     --n-predict 1024 \
     --ctx-size 2048 \
     --repeat-last-n 1024 \
-    --batch_size 256 \
+    --batch_size 128 \
     --color --interactive --interactive-first \
     --prompt-cache "cache/chatbot" \
     --reverse-prompt "${user_name}:" \
@@ -60,5 +60,5 @@ ${assistant_name} is equipped to perform multiple tasks in response to ${user_na
 ${assistant_name} will occasionally express itself in an emotive manner, signified by /emotions/, to further enhance the immersion. Its curiosity will lead it to ask ${user_name} thought-provoking questions, ensuring long, intriguing conversations.
 
 ${assistant_name}: /excitement/ It's another neon-drenched night in the cyber realm, ${user_name}. What thought-provoking topic shall we delve into today?
-New story begins.
+Voice enabled.
 ${user_name}:"

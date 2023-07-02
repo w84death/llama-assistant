@@ -192,14 +192,14 @@ class ChatApp:
             if output == '' and self.process.poll() is not None:
                 break
             if output:
-                if not self.image_generation and "New story begins." in self.text_area.get("1.0", 'end'):
+                if not self.image_generation and "Voice enabled." in self.text_area.get("1.0", 'end'):
                     self.image_generation = True
                     self.read_enabled = True
 
                 if self.read_enabled:
                     buffer += output
                     if output == '\n' or output == '.':
-                        buffer = buffer.replace("R3DNET: ", "", 1)
+                        buffer = buffer.replace("Computer: ", "", 1)
                         self.audio_queue.put(buffer)
                         buffer = ''
                 self.text_area.insert('end', output, 'bot_output')
