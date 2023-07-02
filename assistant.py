@@ -154,7 +154,7 @@ class ChatApp:
             while True:
                 text = self.audio_queue.get().strip()
                 if any(char.isalnum() for char in text):
-                    subprocess.run(['espeak', '-s', '150', '-ven-us', text])
+                    subprocess.run(['espeak', '-s', '150', '-p', '20', '-ven-us', text])
                 self.audio_queue.task_done()
 
         thread = threading.Thread(target=run)
