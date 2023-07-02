@@ -18,7 +18,7 @@ import requests
 import argparse
 from PIL import Image, ImageTk
 
-parser = argparse.ArgumentParser(description='P1X DOS Dreamer')
+parser = argparse.ArgumentParser(description='P1X LLaMA  Assistant')
 parser.add_argument('--ip', type=str, default='127.0.0.1', help='The IP of the Automatic1111 API endpoint')
 args = parser.parse_args()
 
@@ -78,7 +78,7 @@ class SetupWindow:
         self.quit_button.config(bg='#1e2229', fg='#17a488', font=self.custom_font)
         self.quit_button.pack(side='left', padx=32,pady=8)
 
-        self.app.queue.put("Welcome to the PIX LLaMA Assistant")
+        self.app.audio_queue.put("Welcome to the PIX LLaMA Assistant")
 
     def quit(self):
         self.setup_window.destroy()
@@ -121,7 +121,7 @@ class ChatApp:
 
         self.master.bind('<Control-s>', self.save_content)
 
-        self.queue = Queue()
+        self.audio_queue = Queue()
         self.speak_thread()
 
         self.process = None
@@ -137,7 +137,7 @@ class ChatApp:
         self.send_return_button.config(bg=theme['bg_color'], fg=theme['fg_color'], activebackground=theme['fg_color'], activeforeground=theme['bg_color'])
 
         self.generate_image("book cover, robot, ai, abstract")
-        self.queue.put("Loading cyberpunk world...")
+        self.audio_queue.put("Loading cyberpunk world...")
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
@@ -153,14 +153,14 @@ class ChatApp:
         def run():
             import tempfile
             while True:
-                text = self.queue.get().strip()
+                text = self.audio_queue.get().strip()
                 if any(char.isalnum() for char in text):
                     tts = gTTS(text=text, lang='en')
                     temp_filename = tempfile.mktemp(suffix=".mp3")
                     tts.save(temp_filename)
                     os.system(f"mpg123 {temp_filename}")
                     os.remove(temp_filename)
-                self.queue.task_done()
+                self.audio_queue.task_done()
 
         thread = threading.Thread(target=run)
         thread.start()
@@ -204,7 +204,7 @@ class ChatApp:
                     buffer += output
                     if output == '\n' or output == '.':
                         buffer = buffer.replace("R3DNET: ", "", 1)
-                        self.queue.put(buffer)
+                        self.audio_queue.put(buffer)
                         buffer = ''
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
