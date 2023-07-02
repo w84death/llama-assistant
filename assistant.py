@@ -8,9 +8,9 @@ import glob
 import tkinter as tk
 from tkinter import font as tkfont
 from subprocess import Popen, PIPE
+import subprocess
 import threading
 import datetime
-from gtts import gTTS
 from queue import Queue
 import json
 import base64
@@ -136,8 +136,8 @@ class ChatApp:
         self.entry.config(highlightbackground=theme['fg_color'], highlightcolor=theme['fg_color'], insertbackground=theme['fg_color'])
         self.send_return_button.config(bg=theme['bg_color'], fg=theme['fg_color'], activebackground=theme['fg_color'], activeforeground=theme['bg_color'])
 
-        self.generate_image("book cover, robot, ai, abstract")
-        self.audio_queue.put("Loading cyberpunk world...")
+        # self.generate_image("book cover, robot, ai, abstract")
+        self.audio_queue.put("Loading LLaMA model...")
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
@@ -151,19 +151,15 @@ class ChatApp:
 
     def speak_thread(self):
         def run():
-            import tempfile
             while True:
                 text = self.audio_queue.get().strip()
                 if any(char.isalnum() for char in text):
-                    tts = gTTS(text=text, lang='en')
-                    temp_filename = tempfile.mktemp(suffix=".mp3")
-                    tts.save(temp_filename)
-                    os.system(f"mpg123 {temp_filename}")
-                    os.remove(temp_filename)
+                    subprocess.run(['espeak', '-s', '150', '-ven-us', text])
                 self.audio_queue.task_done()
 
         thread = threading.Thread(target=run)
         thread.start()
+
 
     def send_return(self):
         if self.process is not None and self.process.poll() is None:
