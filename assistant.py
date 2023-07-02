@@ -14,14 +14,9 @@ import datetime
 from queue import Queue
 import json
 import base64
-import requests
 import argparse
 from PIL import Image, ImageTk
 import re
-
-parser = argparse.ArgumentParser(description='P1X LLaMA  Assistant')
-parser.add_argument('--ip', type=str, default='127.0.0.1', help='The IP of the Automatic1111 API endpoint')
-args = parser.parse_args()
 
 class SetupWindow:
     def __init__(self, master, app):
@@ -217,40 +212,6 @@ class ChatApp:
 
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
-
-
-    def generate_image(self, prompt):
-        print("GENERATE IMAGE... " + prompt)
-        prompt_preffix = "Cyberpunk concept art of "
-        prompt_suffix = ". cinematic lighting, details, award winning. <lora:CyberPunkAI:0.2> CyberPunkAI"
-        model = ""
-        payload = {
-            "prompt": prompt_preffix + prompt + prompt_suffix,
-            "sampling_method": "other_method",
-            "model": "deliberate_v2.safetensors",
-            "sampling_method": "Euler a",
-            "steps": 24,
-            "cfg_scale": 5,
-            "width": 1024,
-            "height":512
-        }
-        def send_request():
-            response = requests.post(url=f'http://{args.ip}:7860/sdapi/v1/txt2img', json=payload)
-            r = response.json()
-            for i in r['images']:
-                image_data = i
-                if "," in i:
-                    image_data = i.split(",", 1)[1]
-                image = Image.open(io.BytesIO(base64.b64decode(image_data)))
-                width, height = image.size
-                image = image.resize((int(width*0.5), int(height*0.5)), Image.LANCZOS)
-
-                photo = ImageTk.PhotoImage(image)
-                self.image_label.config(image=photo)
-                self.image_label.image = photo
-
-        thread = threading.Thread(target=send_request)
-        thread.start()
 
 
     def save_content(self, event=None):
