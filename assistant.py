@@ -17,6 +17,7 @@ import base64
 import requests
 import argparse
 from PIL import Image, ImageTk
+import re
 
 parser = argparse.ArgumentParser(description='P1X LLaMA  Assistant')
 parser.add_argument('--ip', type=str, default='127.0.0.1', help='The IP of the Automatic1111 API endpoint')
@@ -100,10 +101,10 @@ class ChatApp:
         self.master.title('P1X LLaMA Assistant')
 
         self.custom_font = tkfont.Font(family="Share Tech Mono", size=12)
+        self.custom_font_banner = tkfont.Font(family="Share Tech Mono", size=80)
 
-
-        self.image_label = tk.Label(master,bg='black')
-        self.image_label.pack()
+        self.image_label = tk.Label(master,text="(o.O)",font=self.custom_font_banner)
+        self.image_label.pack(pady=8)
 
         self.text_area = tk.Text(master, font=self.custom_font, bd=0, height=10)
         self.text_area.tag_config('user_input', foreground='#47a349')
@@ -135,12 +136,25 @@ class ChatApp:
         self.text_area.config(highlightbackground=theme['bg_color'], highlightcolor=theme['bg_color'], insertbackground=theme['fg_color'])
         self.entry.config(highlightbackground=theme['fg_color'], highlightcolor=theme['fg_color'], insertbackground=theme['fg_color'])
         self.send_return_button.config(bg=theme['bg_color'], fg=theme['fg_color'], activebackground=theme['fg_color'], activeforeground=theme['bg_color'])
+        self.image_label.config(bg=theme['bg_color'], fg=theme['fg_color'])
 
         # self.generate_image("book cover, robot, ai, abstract")
         self.audio_queue.put("Loading LLaMA model...")
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
+
+    def extract_last_emoticon(self, chat_log):
+        emoticon_pattern = r'\(([^)]+)\)'
+        emoticons = re.findall(emoticon_pattern, chat_log)
+        if emoticons:
+            return "(" + emoticons[-1] + ")" # Return the last emoticon found
+        else:
+            return "( ^^ )"
+
+    def process_chat_log(self, chat_log):
+        last_emoticon = self.extract_last_emoticon(chat_log)
+        return last_emoticon
 
     def toggle_reading(self):
         self.read_enabled = not self.read_enabled
@@ -202,6 +216,8 @@ class ChatApp:
                         buffer = buffer.replace("Computer: ", "", 1)
                         self.audio_queue.put(buffer)
                         buffer = ''
+                        self.image_label.config(text=self.process_chat_log( self.text_area.get("1.0", tk.END)))
+
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
 
