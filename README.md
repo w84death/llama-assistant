@@ -33,11 +33,7 @@ Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assi
 Recommended models 13B:
 - [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
 
-2. If you want to use GUI install font:
-- [Share The Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
-- use the file from repo [ShareTechMono-Regular.ttf](ShareTechMono-Regular.ttf)
-
-3. If main binary do not run compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) app and copy it to this project replacing main, main-cuda, or main-arm.
+2. If main binary do not run, compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) yourself and copy it to this project replacing main, main-cuda, or main-arm.
 
 CPU only, main:
 ```make -j```
@@ -45,13 +41,16 @@ CPU only, main:
 CPU+GPU, main-cuda:
 ```make LLAMA_CUBLAS=1 -j```
 
-4. Tweak each script to adjust to your PC.
+3. Tweak each script to adjust to your PC.
 
 ### Run
 ```./assistant```, or ```python3 assistant.py```
 
+### DISCLAMERS
+
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
-DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
+
+DISCLAMER2: Remember that after changing models or settings remove cache from /cache/ folder!
 
 ## Assistants
 
