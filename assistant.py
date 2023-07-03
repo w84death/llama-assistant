@@ -35,14 +35,22 @@ class SetupWindow:
         self.master.withdraw()  # Hide the main window until setup is done
 
         self.setup_window = tk.Toplevel(self.master)
-        self.setup_window.geometry('512x640')
-        self.setup_window.minsize(512, 640)
+        self.setup_window.geometry('512x700')
+        self.setup_window.minsize(512, 700)
         self.setup_window.title("P1X LLaMA Assistant // Setup")
         self.setup_window.config(bg='#1e2229')
 
-        self.header_image = tk.PhotoImage(file='header.png')
-        header_label = tk.Label(self.setup_window, image=self.header_image)
+        header_art = r'''
+ /\_/\
+( °w° )
+ )   (
+(_)-(_)
+'''
+        header_label = tk.Label(self.setup_window, text=header_art,font=("TkDefaultFont", 40))
+        header_label.config(bg='#1e2229', fg='#17a488')
         header_label.pack(pady=8)
+
+
 
         self.label_welcome = tk.Label(self.setup_window, text="Welcome to the P1X LLaMA Assistant\n\nUse [CTRL]+[S] to save the chat log.\n\nChoose the chatbot and theme:")
         self.label_welcome.config(bg='#1e2229', fg='#17a488', font=self.custom_font)
@@ -74,7 +82,7 @@ class SetupWindow:
         self.quit_button.config(bg='#1e2229', fg='#17a488', font=self.custom_font)
         self.quit_button.pack(side='left', padx=32,pady=8)
 
-        self.app.audio_queue.put("Welcome to the PIX LLaMA Assistant")
+        self.app.audio_queue.put("Welcome to the pix - LLaMA Assistant AI.")
 
     def quit(self):
         self.setup_window.destroy()
@@ -98,8 +106,8 @@ class ChatApp:
         self.custom_font = tkfont.Font(family="Share Tech Mono", size=12)
         self.custom_font_banner = tkfont.Font(family="Share Tech Mono", size=80)
 
-        self.image_label = tk.Label(master,text="(o.O)",font=self.custom_font_banner)
-        self.image_label.pack(pady=8)
+        self.emoji_label = tk.Label(master,text="(o.O)",font=self.custom_font_banner)
+        self.emoji_label.pack(pady=8)
 
         self.text_area = tk.Text(master, font=self.custom_font, bd=0, height=10)
         self.text_area.tag_config('user_input', foreground='#47a349')
@@ -131,10 +139,10 @@ class ChatApp:
         self.text_area.config(highlightbackground=theme['bg_color'], highlightcolor=theme['bg_color'], insertbackground=theme['fg_color'])
         self.entry.config(highlightbackground=theme['fg_color'], highlightcolor=theme['fg_color'], insertbackground=theme['fg_color'])
         self.send_return_button.config(bg=theme['bg_color'], fg=theme['fg_color'], activebackground=theme['fg_color'], activeforeground=theme['bg_color'])
-        self.image_label.config(bg=theme['bg_color'], fg=theme['fg_color'])
+        self.emoji_label.config(bg=theme['bg_color'], fg=theme['fg_color'])
 
         # self.generate_image("book cover, robot, ai, abstract")
-        self.audio_queue.put("Loading LLaMA model...")
+        self.audio_queue.put("Loading LLaMA model,  please wait...")
         self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
@@ -163,7 +171,7 @@ class ChatApp:
             while True:
                 text = self.audio_queue.get().strip()
                 if any(char.isalnum() for char in text):
-                    subprocess.run(['spd-say', '-p', '-20', '-l', 'us', text])
+                    subprocess.run(['spd-say', '-p', '-20', '-l', 'us', '-w', text])
                 self.audio_queue.task_done()
 
         thread = threading.Thread(target=run)
@@ -208,7 +216,7 @@ class ChatApp:
                         buffer = buffer.replace("Computer: ", "", 1)
                         self.audio_queue.put(buffer)
                         buffer = ''
-                        self.image_label.config(text=self.process_chat_log( self.text_area.get("1.0", tk.END)))
+                        self.emoji_label.config(text=self.process_chat_log( self.text_area.get("1.0", tk.END)))
 
                 self.text_area.insert('end', output, 'bot_output')
                 self.text_area.see('end')
