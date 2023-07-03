@@ -214,6 +214,7 @@ class ChatApp:
                     buffer += output
                     if output == '\n' or output == '.' or output == '?' or output == '!':
                         buffer = buffer.replace("Computer: ", "", 1)
+                        buffer = buffer.replace("User: ", "", 1)
                         self.audio_queue.put(buffer)
                         buffer = ''
                         self.emoji_label.config(text=self.process_chat_log( self.text_area.get("1.0", tk.END)))

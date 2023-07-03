@@ -1,5 +1,4 @@
 # LLaMA Assistant
-![LLaMA Assistant](llama-assistant.jpg)
 
 Set of scripts, and GUI application for [llama.cpp](https://github.com/ggerganov/llama.cpp) that provide different usefulf assistants scenarios/templates.
 
@@ -9,9 +8,9 @@ Build on top of the excelent [llama.cpp](https://github.com/ggerganov/llama.cpp)
 - Security: off-line and self-hosted
 - Hardware: runs on any PC, works very well with good GPU
 - Easy: tailored bots for one particular job
-- Accessibility: uses gTTS for screen reading messages
+- Accessibility: uses Speech Dispatcher (spd-say) for screen reading messages
 - Cool: nice GUI with themes for each bot
-- Experimental: bots can request Stable Diffusion image generation
+- Emotions: bots can express emotions via big emoticon
 
 ### GUI
 Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
@@ -55,13 +54,18 @@ DISCLAMER: First run will take a while as it needs to create cache file. Be pati
 DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
 ## Assistants
+
+### Chatbot "Computer"
+
+
+![Chatbot Screenshot](chatbot.png)
+
 ### R3DNET
 R3DNET - your personal cyberpunk storyteller
 
 Script: `./cyberpunk.sh`
 
 ### eMailWriter
-![eMailWriter Header Image](emailwriter.jpg)
 
 (WORK IN PROGRESS) Chat bot shadow writing formal emails for the user.
 
@@ -84,7 +88,6 @@ Best regards,
 ```
 
 ### PromptEngineer
-![PromptEngineer Header Image](prompt-engineer.jpg)
 
 Chat bot for creating prompts for Stable Diffusion.
 
@@ -123,6 +126,7 @@ App default settings are made for my home PC. Dedicated scripts for slower compu
 
 ## Roadplan
 Those things are not implemented but planned.
+- [ ] turn on/off screen reader
 - [ ] one file for system prompt
 - [ ] Add menu to choose CPU only or CPU+GPU
 - [ ] Windows versions (CPU only)
