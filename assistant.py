@@ -1,5 +1,5 @@
 # Frontend for the P1X LLaMA Assistant
-# Version 2.0
+# Version 3.0
 # (c)2023.6 Krzysztof Krystian Jankowski
 
 import os
@@ -27,17 +27,16 @@ class SetupWindow:
         self.master = master
         self.master.geometry('640x800')
         self.master.minsize(512, 640)
-        self.master.title('P1X LLaMA Assistant')
+        self.master.title('Computer')
         self.master.config(bg='#1e2229')
-        self.custom_font = tkfont.Font(family="Share Tech Mono", size=12)
-
+        self.custom_font = tkfont.Font(family="TkDefaultFont", size=12)
         self.app = app
         self.master.withdraw()  # Hide the main window until setup is done
 
         self.setup_window = tk.Toplevel(self.master)
         self.setup_window.geometry('512x700')
         self.setup_window.minsize(512, 700)
-        self.setup_window.title("P1X LLaMA Assistant // Setup")
+        self.setup_window.title("P1X LLaMA Assistant")
         self.setup_window.config(bg='#1e2229')
 
         header_art = r'''
@@ -57,8 +56,8 @@ class SetupWindow:
         self.label_welcome.pack(padx=32,pady=8)
 
         self.var_binary = tk.StringVar(self.setup_window)
-        self.var_binary.set("./cyberpunk.sh")  # default value
-        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "./cyberpunk.sh", "./chatbot.sh",  "./email.sh", "./pi4-chatbot.sh", "./steamdeck-chatbot.sh", "./steamdeck-cyberpunk.sh","./steamdeck-email.sh")
+        self.var_binary.set("chatbot")  # default value
+        self.dropdown = tk.OptionMenu(self.setup_window, self.var_binary, "cyberpunk", "chatbot",  "email", "pi4-chatbot", "steamdeck-chatbot", "steamdeck-cyberpunk","steamdeck-email")
         self.dropdown.config(bg='#1e2229', fg='#17a488', font=self.custom_font)
         self.dropdown.pack(padx=32,pady=4)
 
@@ -101,10 +100,10 @@ class ChatApp:
         self.master.geometry('640x800')
         self.master.minsize(512, 800)
         self.master.maxsize(512, 1920)
-        self.master.title('P1X LLaMA Assistant')
+        self.master.title('Computer')
 
-        self.custom_font = tkfont.Font(family="Share Tech Mono", size=12)
-        self.custom_font_banner = tkfont.Font(family="Share Tech Mono", size=80)
+        self.custom_font = tkfont.Font(family="TkDefaultFont", size=12)
+        self.custom_font_banner = tkfont.Font(family="TkDefaultFont", size=80)
 
         self.emoji_label = tk.Label(master,text="(o.O)",font=self.custom_font_banner)
         self.emoji_label.pack(pady=8)
@@ -143,7 +142,7 @@ class ChatApp:
 
         # self.generate_image("book cover, robot, ai, abstract")
         self.audio_queue.put("Loading LLaMA model,  please wait...")
-        self.process = Popen(["stdbuf", "-o0", "./" + binary_name], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        self.process = Popen(["stdbuf", "-o0", "./assistants/" + binary_name + ".sh"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         self.thread = threading.Thread(target=self.read_output, daemon=True)
         self.thread.start()
 
