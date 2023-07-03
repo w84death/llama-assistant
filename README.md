@@ -48,8 +48,8 @@ CPU+GPU, main-cuda:
 4. Tweak each script to adjust to your PC.
 
 ### Run
-```./assistant```
-   
+```./assistant```, or ```python3 assistant.py```
+
 DISCLAMER: First run will take a while as it needs to create cache file. Be patient.
 DISCLAMER2: Remember that changing models requies removing cache from /cache/ folder!
 
@@ -57,8 +57,12 @@ DISCLAMER2: Remember that changing models requies removing cache from /cache/ fo
 
 ### Chatbot "Computer"
 
-
 ![Chatbot Screenshot](chatbot.png)
+
+Computer - AI companion who seeks to understand and connect with others through meaningful conversation.
+
+Script: `./cyberpunk.sh`
+
 
 ### R3DNET
 R3DNET - your personal cyberpunk storyteller
