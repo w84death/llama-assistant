@@ -1,12 +1,11 @@
 #!/bin/bash
-# R3DNET - a generic chat bot roleplaying a cyberpunk fixer (hacker)
+# Computer - a generic chat bot roleplaying a cyberpunk fixer (hacker)
 # Version 2.0
 # (c)2023.6 Krzysztof Krystian Jankowski
 
-MODEL="guanaco-13B.ggmlv3.q5_K_M.bin"
+MODEL="orca-mini-v2_7b.ggmlv3.q4_0.bin"
 
 CORES=3 # logical cores of the CPU
-GPU_L=14 # how much to sent to the GPU (43 is max for 13B model)
 
 TEMP=0.7 # 0.5 focused, 1.5 creative
 TOP_K=30 # 30 focused, 100 more diverese
@@ -33,7 +32,6 @@ echo "( .. ) LOADING MODEL..."
 ./main-cpu \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \
@@ -63,5 +61,5 @@ ${assistant_name} uses creative emoticons for a robot.
 
 Voice enabled.
 
-${assistant_name}: ( ^^ ) It's another neon-drenched night in the cyber realm, ${user_name}. What thought-provoking topic shall we delve into today?
+${assistant_name}: ( ^-^) It's another neon-drenched night in the cyber realm, ${user_name}. What thought-provoking topic shall we delve into today?
 ${user_name}:"

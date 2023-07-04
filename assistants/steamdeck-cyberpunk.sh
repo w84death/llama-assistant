@@ -3,11 +3,9 @@
 # Version 2.1
 # (c)2023.6 Krzysztof Krystian Jankowski
 
-MODEL="guanaco-13B.ggmlv3.q5_K_M.bin"
-
+MODEL="guanaco-7B.ggmlv3.q5_K_M.bin"
 
 CORES=3 # logical cores of the CPU
-GPU_L=13 # how much to sent to the GPU (43 is max for 13B model)
 
 TEMP=0.6 # 0.5 focused, 1.5 creative
 TOP_K=40 # 30 focused, 100 more diverese
@@ -42,7 +40,6 @@ echo "LOADING MODEL..."
 ./main-cpu \
     --model "./models/$MODEL" \
     --threads "$CORES" \
-    --n-gpu-layers "$GPU_L" \
     --temp "$TEMP" \
     --top_k "$TOP_K" \
     --top_p "$TOP_P" \

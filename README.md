@@ -30,8 +30,10 @@ Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assi
 
 1. Download model and put it in the /models/ folder.
 
-Recommended models 13B:
-- [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
+Recommended models:
+- PC with GPU: [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
+- PC CPU, Steam Deck: [guanaco-7B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-7B-GGML/resolve/main/guanaco-7B.ggmlv3.q5_K_M.bin) 4.77 GB
+- Raspberry Pi: [orca-mini-3b.ggmlv3.q4_0.bin](https://huggingface.co/TheBloke/orca_mini_3B-GGML/resolve/main/orca-mini-3b.ggmlv3.q4_0.bin) 1.93 GB
 
 2. If main binary do not run, compile the [llama.cpp](https://github.com/ggerganov/llama.cpp) yourself and copy it to this project replacing main, main-cuda, or main-arm.
 

@@ -5,7 +5,7 @@
 
 MODEL="guanaco-7B.ggmlv3.q5_K_M.bin"
 
-CORES=4
+CORES=3
 
 TEMP=0.7
 TOP_K=40
