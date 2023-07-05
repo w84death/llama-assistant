@@ -11,7 +11,7 @@ Build on top of the excelent [llama.cpp](https://github.com/ggerganov/llama.cpp)
 - Accessibility: uses Speech Dispatcher (spd-say) for screen reading messages
 - Cool: nice GUI with themes for each bot
 - Emotions: bots can express emotions via big emoticon
-
+s
 ### GUI
 Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assistant``` binary.
 
@@ -19,16 +19,16 @@ Use tge nice GUI by ```python assistant.py``` (recommended) or running ```./assi
 
 ![Assistant GUI Main screen Screenshot](assistant-main.png)
 
-- runs on Windows nad Linux
-- easy to modify
-- themes: cyberpunk, CRT (for my small screen), paper
-- screen reader (gTTS at the moment, I will change that to something more free)
-- connection to Stable Diffusion server
-
-### Usage
 ### Prepare
+#### Debian
+1. Instal NVIDIA Drivers and  CUDA as described in [the manual](https://wiki.debian.org/NvidiaGraphicsDrivers).
+2. Install python tkinter:
+```sudo apt install python3-tk -y  ```
 
+#### Model & llama.cpp
 1. Download model and put it in the /models/ folder.
+
+Get more models for [guanaco](https://old.reddit.com/r/LocalLLaMA/comments/13rthln/guanaco_7b_13b_33b_and_65b_models_by_tim_dettmers/) and [orca](https://huggingface.co/TheBloke/orca_mini_v2_7B-GGML/tree/main).
 
 Recommended models:
 - PC with GPU: [guanaco-13B.ggmlv3.q5_K_M.bin](https://huggingface.co/TheBloke/guanaco-13B-GGML/blob/main/guanaco-13B.ggmlv3.q5_K_M.bin) 9.21 GB
@@ -45,7 +45,7 @@ CPU+GPU, main-cuda:
 
 3. Tweak each script to adjust to your PC.
 
-### Run
+### Usage
 ```./assistant```, or ```python3 assistant.py```
 
 ### DISCLAMERS
